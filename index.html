@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>WebSocket demo</title>
+    </head>
+    <body>
+        <ul id="chat">
+        </ul>
+        Name: <input type="text" id="name">
+        <textarea></textarea>
+        <button>Send Message</button>
+        <script>
+            websocket = new WebSocket("ws://127.0.0.1:8881/");
+            ul = document.querySelector('#chat')
+            send = document.querySelector('button')
+
+            send.addEventListener('click', function(){
+                websocket.send(JSON.stringify({msg: document.querySelector('textarea').value, name: document.querySelector('#name').value}))
+            })
+
+            websocket.onmessage = function(event){
+                data = JSON.parse(event.data)
+
+                li = document.createElement('li')
+                li.innerHTML = `${data.name} diz: ${data.msg}`
+                ul.appendChild(li)
+            }
+        </script>
+    </body>
+</html>
