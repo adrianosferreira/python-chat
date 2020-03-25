@@ -9,14 +9,12 @@
         <textarea></textarea>
         <button>Send Message</button>
         <script>
-            websocket = new WebSocket("wss://python-server-app.herokuapp.com:8881/");
+            websocket = new WebSocket("https://python-server-app.herokuapp.com");
             ul = document.querySelector('#chat')
             send = document.querySelector('button')
 
             send.addEventListener('click', function(){
-            websocket.onopen = function(response) {
                 websocket.send(JSON.stringify({msg: document.querySelector('textarea').value, name: document.querySelector('#name').value}))
-            };
             })
 
             websocket.onmessage = function(event){
