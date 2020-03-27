@@ -9,7 +9,7 @@
         <textarea></textarea>
         <button>Send Message</button>
         <script>
-            websocket = new WebSocket("wss://python-server-app.herokuapp.com");
+            websocket = new WebSocket("ws://localhost:8881?user_id=adriano");
             ul = document.querySelector('#chat')
             send = document.querySelector('button')
 
